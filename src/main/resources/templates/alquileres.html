@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/css/globals.css" th:href="@{/css/globals.css}" rel="stylesheet" />
+    <link href="../static/css/navbar.css" th:href="@{/css/navbar.css}" rel="stylesheet" />
+    <link href="../static/css/alquileres.css" th:href="@{/css/alquileres.css}" rel="stylesheet" />
+    <title>Lista de Alquileres</title>
+</head>
+<body>
+<header th:insert="~{fragments/navbar :: navbar}"></header>
+
+<main class="layout">
+    <section class="alquileresContainer">
+        <div th:each="alquiler : ${listaAlquileres}" class="alquilerCard">
+            <div class="vehiculoInfoContainer">
+                <div class="vehiculoInfo">
+                    <div class="vehiculoInfoItem">
+                        <h2>ID:</h2>
+                        <p th:text="${alquiler.alquilerId}"></p>
+                    </div>
+                    <div class="vehiculoInfoItem">
+                        <h2>Fecha Inicio:</h2>
+                        <p th:text="${alquiler.fechaInicio}"></p>
+                    </div>
+                    <div class="vehiculoInfoItem">
+                        <h2>Fecha Fin:</h2>
+                        <p th:text="${alquiler.fechaFin}"></p>
+                    </div>
+                    <div class="vehiculoInfoItem">
+                        <h2>Importe:</h2>
+                        <p th:text="${alquiler.importe}"></p>
+                    </div>
+                    <div class="vehiculoInfoItem">
+                        <h2>Vehiculo Id:</h2>
+                        <p th:text="${alquiler.vehiculoId}"></p>
+                    </div>
+                    <div class="vehiculoInfoItem">
+                        <h2>Cliente Id:</h2>
+                        <p th:text="${alquiler.clienteId}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+
+</html>
+
