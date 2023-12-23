@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/css/alquileres.css" th:href="@{/css/alquileres.css}" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/globals.css" th:href="@{/css/globals.css}" rel="stylesheet" type="text/css">
+
+
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        label{
+            color: white;
+            margin-bottom: 0.2rem;
+        }
+        input{
+            border-radius: 20px;
+            width: 120px;
+            height: 30px;
+            margin-bottom: 0.5rem
+        }
+        select{
+            border-radius: 20px;
+            width: 120px;
+            margin-bottom: 1rem;
+        }
+        button{
+            border-radius: 20px;
+            width: 120px;
+            border: none;
+        }
+        .alquilerCard{
+            width: 420px;
+            height: 287px;
+            border-radius: 30px;
+            padding: 29px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            background-color: #3C3737;
+
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--poppins);
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh">
+    <form  class="alquilerCard" th:action="@{/login}" th:object="${user}" method="post" style="gap: 0rem; color: white">
+        <h1>Login</h1>
+        <div th:if="${param.error}">
+            Invalid username and password.</div>
+        <div th:if="${param.logout}">
+            You have been logged out.</div>
+        <form th:action="@{/login}" method="post">
+            <div>
+                <input type="text" name="username" placeholder="Username"/>
+            </div>
+            <div>
+                <input type="password" name="password" placeholder="Password"/>
+            </div>
+            <input type="submit" value="Log in" />
+    </form>
+
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

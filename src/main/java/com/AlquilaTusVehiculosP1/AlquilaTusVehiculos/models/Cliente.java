@@ -7,24 +7,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Cliente {
     @Id
     private String clienteId;
-    private String password;
-
     private String foto;
     private String nombre;
     private String email;
     private String telefono;
 
-    // Constructor, getters y setters
+
 
     public Cliente() {
         // Constructor por defecto
     }
 
     // Constructor con parámetros
-    public Cliente( String password, String nombre, String email, String telefono, String foto) {
+    public Cliente( String nombre, String email, String telefono, String foto) {
         this.nombre = nombre;
         this.email = email;
-        this.password = password;
         this.telefono = telefono;
         this.foto = foto;
     }
@@ -47,13 +44,7 @@ public class Cliente {
         this.foto = foto;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String contraseña) {
-        this.password = contraseña;
-    }
 
     public String getNombre() {
         return nombre;

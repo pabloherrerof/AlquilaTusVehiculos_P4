@@ -11,7 +11,10 @@
 <header th:insert="~{fragments/navbar :: navbar}"></header>
 
 <main class="layout">
+    <button th:if="${#authorization.expression('hasRole(''USUARIO'')')}" id="btnCrearAlquiler" class="btnCrear">+</button>
+    <h1 th:if="${#authorization.expression('hasRole(''USUARIO'')')}">Mis Alquileres</h1>
     <section class="alquileresContainer">
+
         <div th:each="alquiler : ${listaAlquileres}" class="alquilerCard">
             <div class="vehiculoInfoContainer">
                 <div class="vehiculoInfo">
@@ -42,10 +45,47 @@
                 </div>
             </div>
         </div>
+        <div id="modalFormulario" class="modal" th:if="${#authorization.expression('hasRole(''USUARIO'')')}">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="formularioAlquiler" th:action="@{/usuarios/alquileres}" method="post">
+                    <h1>Añadir alquiler:</h1>
+                    <label for="fechaInicio">Fecha Inicio:</label>
+                    <input type="date" name="fechaInicio" placeholder="Fecha Inicio" required id="fechaInicio">
+                    <label for="fechaFin">Fecha Fin:</label>
+                    <input type="date" name="fechaFin" placeholder="Fecha Fin" required id="fechaFin">
+                    <input type="number" name="importe" placeholder="Importe" required>
+                    <select name="vehiculoId" id="vehiculoId">
+                        <option id="option" th:each="vehiculo : ${listaVehiculos}" th:value="${vehiculo.vehiculoId}" th:text="${vehiculo.vehiculoId}"></option>
+                    </select>
+                    <button class="btnSave" type="submit">Guardar Alquiler</button>
+                </form>
+            </div>
+        </div>
     </section>
 </main>
 
 </body>
+<script>
+    var modal = document.getElementById("modalFormulario");
+    var btn = document.getElementById("btnCrearAlquiler");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+</script>
 
 </html>
 
